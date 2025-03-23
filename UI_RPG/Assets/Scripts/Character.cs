@@ -1,34 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    public int health;
+    public int health; 
+    public int maxHealth; 
+    public string CharName;  
     [SerializeField] private Weapon weapon;
 
-    public Weapon Weapon
-    {
-        get { return weapon; }
-    }
+    public Weapon Weapon => weapon;
 
     public virtual int Shout()
     {
         return weapon.GetDamage();
     }
 
-    public void GetHit(int damage)
+    public virtual void GetHit(int damage)
     {
-        Debug.Log(name + " startingHealth: " + health);
         health -= damage;
-        Debug.Log(name + " Health after hit: " + health);
+        health = Mathf.Max(health, 0); 
     }
 
     public void GetHit(Weapon weapon)
     {
-        Debug.Log(name + " startingHealth: " + health);
+        Debug.Log(name + " starting health: " + health);
         health -= weapon.GetDamage();
-        Debug.Log(" after getting hit by " + weapon.name+ ":" + health);
-        
+        Debug.Log(name + " after getting hit by " + weapon.name + ": " + health);
     }
 }

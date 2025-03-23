@@ -13,4 +13,5 @@ public abstract class Weapon : MonoBehaviour
    }
    
    public abstract void ApplyEffect(Character target);
+   
 }
